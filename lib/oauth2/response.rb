@@ -1,5 +1,5 @@
 require 'multi_json'
-require 'rack'
+require 'rack_oauth2'
 
 module OAuth2
   # OAuth2::Response class
@@ -52,7 +52,7 @@ module OAuth2
       # Can't reliably detect whether MultiJson responds to load, since it's
       # a reserved word. Use adapter as a proxy for new features.
       :json  => lambda{ |body| MultiJson.respond_to?(:adapter) ? MultiJson.load(body) : MultiJson.decode(body) rescue body },
-      :query => lambda{ |body| Rack::Utils.parse_query(body) },
+      :query => lambda{ |body| RackOauth2::Utils.parse_query(body) },
       :text  => lambda{ |body| body }
     }
 

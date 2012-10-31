@@ -19,7 +19,7 @@ module OAuth2
       # @param [String] kvform the application/x-www-form-urlencoded string
       # @return [AccessToken] the initalized AccessToken
       def from_kvform(client, kvform)
-        from_hash(client, Rack::Utils.parse_query(kvform))
+        from_hash(client, RackOauth2::Utils.parse_query(kvform))
       end
     end
 
